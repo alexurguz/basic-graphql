@@ -1,31 +1,22 @@
-
 'use strict'
 
-const { graphql, buildSchema } = require('graphql');
-const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const { buildSchema } = require('graphql')
+const express = require('express')
+const { graphqlHTTP } = require('express-graphql')
+const { readFileSync } = require('fs')
+const { join } = require('path')
+const resolvers = require('./lib/resolvers')
 
 const app = express()
 const port = process.env.port || 3000
 
-// Define schema
-const schema = buildSchema(`
-  type Query {
-    "Retorna un saludo al mundo"
-    hello: String,
-    saludo: String
-  }
-`)
-
-// Configurate the resolvers
-const resolvers = {
-  hello: () => {
-    return 'Hola Mundo'
-  },
-  saludo: () => {
-    return 'Hola Mundo'
-  }
-}
+// definiendo el esquema
+const schema = buildSchema(
+  readFileSync(
+    join(__dirname, 'lib', 'schemas.graphql'),
+    'utf-8'
+  )
+)
 
 app.use('/api', graphqlHTTP({
   schema: schema,
@@ -34,5 +25,5 @@ app.use('/api', graphqlHTTP({
 }))
 
 app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}/api`);
+  console.log(`Server is listening at http://localhost:${port}/api`)
 })
