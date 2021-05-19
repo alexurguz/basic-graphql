@@ -11,12 +11,17 @@
     "url": "git+https://github.com/alexurguz/basic-graphql.git"
   },
   "author": "Johnatan Alexis Urbano Guzman",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/alexurguz/basic-graphql/issues"
   },
   "homepage": "https://github.com/alexurguz/basic-graphql#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
     "graphql": "^15.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
