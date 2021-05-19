@@ -1,0 +1,22 @@
+{
+  "name": "basic-graphql",
+  "version": "1.0.0",
+  "description": "basic concepts graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexurguz/basic-graphql.git"
+  },
+  "author": "Johnatan Alexis Urbano Guzman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexurguz/basic-graphql/issues"
+  },
+  "homepage": "https://github.com/alexurguz/basic-graphql#readme",
+  "dependencies": {
+    "graphql": "^15.5.0"
+  }
+}
