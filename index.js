@@ -1,29 +1,29 @@
-'use strict'
+'use strict';
+require('dotenv').config();
+const { makeExecutableSchema } = require('graphql-tools');
+const { buildSchema } = require('graphql');
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const { readFileSync } = require('fs');
+const { join } = require('path');
+const resolvers = require('./lib/resolvers');
 
-const { makeExecutableSchema } = require('graphql-tools')
-const { buildSchema } = require('graphql')
-const express = require('express')
-const { graphqlHTTP } = require('express-graphql')
-const { readFileSync } = require('fs')
-const { join } = require('path')
-const resolvers = require('./lib/resolvers')
-
-const app = express()
-const port = process.env.port || 3000
+const app = express();
+const port = process.env.port || 3000;
 
 // definiendo el esquema
-const typeDefs = readFileSync(
-  join(__dirname, 'lib', 'schemas.graphql'),
-  'utf-8'
-)
-const schema = makeExecutableSchema({ typeDefs, resolvers })
+const typeDefs = readFileSync(join(__dirname, 'lib', 'schemas.graphql'), 'utf-8');
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
-app.use('/api', graphqlHTTP({
-  schema: schema,
-  rootValue: resolvers,
-  graphiql: true
-}))
+app.use(
+	'/api',
+	graphqlHTTP({
+		schema: schema,
+		rootValue: resolvers,
+		graphiql: true
+	})
+);
 
 app.listen(port, () => {
-  console.log(`Server is listening at http://localhost:${port}/api`)
-})
+	console.log(`Server is listening at http://localhost:${port}/api`);
+});
